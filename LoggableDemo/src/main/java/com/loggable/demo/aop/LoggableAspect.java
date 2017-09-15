@@ -20,11 +20,11 @@ import org.springframework.stereotype.Component;
 public class LoggableAspect {
 	Logger log = LoggerFactory.getLogger(this.getClass());
 
-	@Around("execution(* *(..)) && @annotation(Loggable)")
+	@Around("execution(* *(..)) && @annotation(com.jcabi.aspects.Loggable)")
 	public Object around(ProceedingJoinPoint point) throws Throwable {
 		long start = System.currentTimeMillis();
 		Object result = point.proceed();
-		log.info("#{} ({}): {} in {}msec", 
+		log.info("#{} ({}): {} in {} msec", 
 				MethodSignature.class.cast(point.getSignature()).getMethod().getName(),
 				point.getArgs(), 
 				result, 
